@@ -44,6 +44,18 @@ export const deleteCartItem = (req: Request,res: Response,next: NextFunction) =>
     res.redirect('/cart');
 }
 
+export const postCartDecreaseItem = (req: Request,res: Response,next: NextFunction) => {
+    const productId = +req.body.productId;
+    Cart.decreaseProduct(productId);
+    res.redirect('/cart');
+}
+
+export const postCartIncreaseItem = (req: Request,res: Response,next: NextFunction) => {
+    const productId = +req.body.productId;
+    Cart.addProduct(productId,1);
+    res.redirect('/cart');
+}
+
 export const postCart = (req: Request,res: Response,next: NextFunction) => {
     const productId = +req.body.productId;
     Cart.addProduct(productId,1);

@@ -36,6 +36,16 @@ export const deleteCartItem = (req, res, next) => {
     Cart.deleteProduct(productId);
     res.redirect('/cart');
 };
+export const postCartDecreaseItem = (req, res, next) => {
+    const productId = +req.body.productId;
+    Cart.decreaseProduct(productId);
+    res.redirect('/cart');
+};
+export const postCartIncreaseItem = (req, res, next) => {
+    const productId = +req.body.productId;
+    Cart.addProduct(productId, 1);
+    res.redirect('/cart');
+};
 export const postCart = (req, res, next) => {
     const productId = +req.body.productId;
     Cart.addProduct(productId, 1);

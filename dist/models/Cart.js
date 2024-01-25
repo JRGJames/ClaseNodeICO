@@ -24,4 +24,16 @@ export class Cart {
             cartItems.splice(index, 1);
         }
     }
+    static decreaseProduct(id) {
+        const index = cartItems.findIndex(item => item.id === id);
+        if (index >= 0) {
+            const quantity = cartItems[index].quantity;
+            if (quantity === 1) {
+                this.deleteProduct(id);
+            }
+            else {
+                cartItems[index] = new CartItem(id, quantity - 1);
+            }
+        }
+    }
 }
