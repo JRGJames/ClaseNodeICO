@@ -33,6 +33,8 @@ export const getCart = (req: Request,res: Response,next: NextFunction) => {
             price: product.price,
             quantity: cartItems.quantity
             }
+        } else {
+            return []
         }
     });
     res.render('shop/cart', {pageTitle:'Carrito', path:'/cart', items: items});
