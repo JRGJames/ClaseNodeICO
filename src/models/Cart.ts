@@ -1,3 +1,5 @@
+import { stat } from "fs";
+
 export class CartItem {
     constructor(
         public id: number,
@@ -14,6 +16,17 @@ export class Cart {
             cartItems[index] = new CartItem(id, cartItems[index].quantity + quantity);
         } else {
             cartItems.push(new CartItem(id, quantity));
+        }
+    }
+
+    static getCart() {
+        return cartItems;
+    }
+
+    static deleteProduct(id: number) {
+        const index = cartItems.findIndex(item => item.id === id);
+        if (index >= 0) {
+            cartItems.splice(index, 1);
         }
     }
 }

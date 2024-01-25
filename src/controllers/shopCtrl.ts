@@ -22,10 +22,32 @@ export const getProductById = (req: Request,res: Response,next: NextFunction) =>
     }
 };
 
+export const getCart = (req: Request,res: Response,next: NextFunction) => {
+    const cartItems = Cart.getCart();
+    const items = cartItems.map(cartItems => {
+        const product = Product.findById(cartItems.id); 
+        if(product) {
+            return {
+            id: cartItems.id,
+            title: product.title,
+            price: product.price,
+            quantity: cartItems.quantity
+            }
+        }
+    });
+    res.render('shop/cart', {pageTitle:'Carrito', path:'/cart', items: items});
+}
+
+export const deleteCartItem = (req: Request,res: Response,next: NextFunction) => {
+    const productId = +req.body.productId;
+    Cart.deleteProduct(productId);
+    res.redirect('/cart');
+}
+
 export const postCart = (req: Request,res: Response,next: NextFunction) => {
     const productId = +req.body.productId;
     Cart.addProduct(productId,1);
-    res.render('shop/cart', {nombre:'JR'});
+    res.redirect('/cart');
 };
 
 export const getSaludo = (req: Request,res: Response,next: NextFunction)=>{

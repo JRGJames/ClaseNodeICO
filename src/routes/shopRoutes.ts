@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getIndex, getProducts, getProductById, getSaludo, postCart } from "../controllers/shopCtrl.js";
+import { getIndex, getProducts, getProductById, getSaludo, postCart, getCart, deleteCartItem } from "../controllers/shopCtrl.js";
 
 
 
@@ -9,5 +9,7 @@ export const shopRouter =  Router();
 shopRouter.get('/',getIndex);
 shopRouter.get('/products',getProducts);
 shopRouter.get('/products/:productId',getProductById);
+shopRouter.get('/cart',getCart);
+shopRouter.post('/add-to-cart',postCart);
+shopRouter.post('/cart-delete-item',deleteCartItem);
 shopRouter.get('/saludo', getSaludo);
-shopRouter.get('/cart',postCart);

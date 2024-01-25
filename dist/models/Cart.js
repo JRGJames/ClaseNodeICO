@@ -15,4 +15,13 @@ export class Cart {
             cartItems.push(new CartItem(id, quantity));
         }
     }
+    static getCart() {
+        return cartItems;
+    }
+    static deleteProduct(id) {
+        const index = cartItems.findIndex(item => item.id === id);
+        if (index >= 0) {
+            cartItems.splice(index, 1);
+        }
+    }
 }

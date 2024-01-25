@@ -16,10 +16,30 @@ export const getProductById = (req, res, next) => {
         res.status(404).render('404.ejs');
     }
 };
+export const getCart = (req, res, next) => {
+    const cartItems = Cart.getCart();
+    const items = cartItems.map(cartItems => {
+        const product = Product.findById(cartItems.id);
+        if (product) {
+            return {
+                id: cartItems.id,
+                title: product.title,
+                price: product.price,
+                quantity: cartItems.quantity
+            };
+        }
+    });
+    res.render('shop/cart', { pageTitle: 'Carrito', path: '/cart', items: items });
+};
+export const deleteCartItem = (req, res, next) => {
+    const productId = +req.body.productId;
+    Cart.deleteProduct(productId);
+    res.redirect('/cart');
+};
 export const postCart = (req, res, next) => {
     const productId = +req.body.productId;
     Cart.addProduct(productId, 1);
-    res.render('shop/cart', { nombre: 'JR' });
+    res.redirect('/cart');
 };
 export const getSaludo = (req, res, next) => {
     res.render('prueba', { nombre: 'Ico' });
