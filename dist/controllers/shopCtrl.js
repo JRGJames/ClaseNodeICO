@@ -28,6 +28,9 @@ export const getCart = (req, res, next) => {
                 quantity: cartItems.quantity
             };
         }
+        else {
+            return [];
+        }
     });
     res.render('shop/cart', { pageTitle: 'Carrito', path: '/cart', items: items });
 };

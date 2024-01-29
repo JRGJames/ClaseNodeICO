@@ -1,8 +1,11 @@
+import { ObjectId } from "mongodb";
 
 
 const products: Product[] = [];
 
 export class Product {
+    public _id?: ObjectId;
+
     constructor(
         public title: string,
         public imageUrl: string,
