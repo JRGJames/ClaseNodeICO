@@ -1,0 +1,5 @@
+Jaime Roselló Gómez
+
+Entraga nº1:
+
+npm install - npm run sync - npm run build - npm start

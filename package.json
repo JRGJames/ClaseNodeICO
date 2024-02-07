@@ -16,7 +16,7 @@
     "appWeb",
     "DWES"
   ],
-  "author": "Ico",
+  "author": "Jaime Rosello",
   "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.17.21",

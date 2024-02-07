@@ -3,8 +3,6 @@ import express, { urlencoded } from "express";
 import { rutas } from "./utils/rutas.js";
 import { adminRouter } from "./routes/adminRoutes.js";
 import { shopRouter } from "./routes/shopRoutes.js";
-import { connectToDatabase } from "./services/databaseService.js";
-import { User } from "./models/User.js";
 
 console.log('------------------------------------------------------------_---');
 console.log("Bienvenido a mi app");
@@ -13,9 +11,6 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-connectToDatabase()
-.then(() => {
-    console.log("Connected to database");
     app.use(urlencoded({ extended: false })); //Middleware para procesar los campos que me envíen por HTTP body-parser
     app.use(express.static(rutas.public)); //Mia rutas contenido estáticos .css .js
     app.disable('x-powered-by');
@@ -40,10 +35,6 @@ connectToDatabase()
     app.listen(port);
     console.log("Servidor de la app en marcha");
     console.log(`Página disponible en: http://localhost:${port}`);
-}
-).catch((err) => {
-    console.log("Error connecting to database");
-    console.log(err);
-}
-);
+
+
 

@@ -1,5 +1,4 @@
 import { ObjectId } from "mongodb";
-import { collections } from "../services/databaseService.js";
 export class User {
     constructor(dni, name, mail, contact, id) {
         this.dni = dni;
